@@ -26,7 +26,7 @@ function getHumanChoice(){
     let input = 0
     while(input <= 0 || input >= 4 || isNaN(input) == true)
     {
-        input = parseInt(prompt("Please enter either 1, 2, or 3. \n 1 = rock, 2 = paper, 3 = scissors"))
+        input = parseInt(prompt("Please enter either 1, 2, or 3. \n 1 = rock, 2 = paper, 3 = scissors \nHuman score: " + humanScore + "\nComputer score: " + computerScore))
     }
 
 
