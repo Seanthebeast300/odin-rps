@@ -1,27 +1,17 @@
+//game logic
+//ver declerations
 let humanScore = 0;
 let computerScore = 0;
-
 
 //creates a random num 1-3, returns number
 let rand = 0
 function getComputerChoice() {
     rand = Math.round(((Math.random() * 2) + 1))
-    
-    // if (rand === 1) {
-    //     output = "rock"
-    // }
-    // if (rand === 2) {
-    //     output = "paper"
-    // }
-    // if (rand === 3) {
-    //     output = "scissors"
-    // }
 
     return rand
 }
 
 //prompts the user to enter a number 1-3, returns number
-
 function getHumanChoice(){
     let input = 0
     while(input <= 0 || input >= 4 || isNaN(input) == true)
@@ -29,19 +19,7 @@ function getHumanChoice(){
         input = parseInt(prompt("Please enter either 1, 2, or 3. \n 1 = rock, 2 = paper, 3 = scissors \nHuman score: " + humanScore + "\nComputer score: " + computerScore))
     }
 
-
-    // if (input === 1) {
-    //     output = "rock"
-    // }
-    // if (input === 2) {
-    //     output = "paper"
-    // }
-    // if (input === 3) {
-    //     output = "scissors"
-    // }
-    
-    return input
-    
+    return input 
 }
 
 function playRound(humanChoice, computerChoice) 
@@ -93,3 +71,34 @@ function playRound(humanChoice, computerChoice)
 //     console.log("Human score: " + humanScore);
 //     console.log("Computer score: " + computerScore);
 // }
+
+
+// UI logic
+// element creation with selectors
+rockImg = document.getElementById("rock")
+paperImg = document.getElementById("paper")
+scissorsImg = document.getElementById("scissors")
+
+
+//event listeners
+rockImg.addEventListener("click", chooseRock)
+paperImg.addEventListener("click", choosePaper)
+scissorsImg.addEventListener("click", chooseScissors)
+
+
+//functions triggered when image is clicked
+function chooseRock()
+{
+    playRound(1, getComputerChoice()) //sets of "playRound" function in game logic section
+    alert("Rock") //for debugging
+}
+function choosePaper()
+{
+    playRound(2, getComputerChoice())
+    alert("Paper")
+}
+function chooseScissors()
+{
+    playRound(3, getComputerChoice())
+    alert("Scissors")
+}
