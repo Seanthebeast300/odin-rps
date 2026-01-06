@@ -102,4 +102,3 @@ function chooseScissors()
 {
     playRound("scissors", getComputerChoice())
 }
-
