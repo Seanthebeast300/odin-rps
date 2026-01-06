@@ -12,39 +12,56 @@ let rand = 0
 function getComputerChoice() {
     rand = Math.round(((Math.random() * 2) + 1))
 
-    return rand
+    if (rand == 1)
+    {
+        return "rock"
+    }
+    if (rand == 2)
+    {
+        return "paper"
+    }
+    if (rand == 3)
+    {
+        return "scissors"
+    }
 }
 
 function playRound(humanChoice, computerChoice) 
 {
     let winner = ''
-    // if (humanChoice === computerChoice)
-    // {
-        
-    // }
-    if (humanChoice === 1 && computerChoice === 2)
+
+    if (humanChoice === "rock" && computerChoice === "paper")
     {
-        computerScore++;
+        winner = "computer"
     }
-    if (humanChoice === 1 && computerChoice === 3)
+    if (humanChoice === "rock" && computerChoice === "scissors")
     {
-        humanScore++;
+        winner = "player"
     }
-    if (humanChoice === 2 && computerChoice === 3)
+    if (humanChoice === "paper" && computerChoice === "scissors")
     {
-        computerScore++;
+        winner = "computer"
     }
-    if (humanChoice === 2 && computerChoice === 1)
+    if (humanChoice === "paper" && computerChoice === "rock")
     {
-        humanScore++;
+        winner = "player"
     }
-    if (humanChoice === 3 && computerChoice === 1)
+    if (humanChoice === "scissors" && computerChoice === "rock")
     {
-        computerScore++;
+        winner = "computer"
     }
-    if (humanChoice === 3 && computerChoice === 2)
+    if (humanChoice === "scissors" && computerChoice === "paper")
     {
-        humanScore++;
+        winner = "player"
+    }
+
+    if (winner === "player")
+    {
+        humanScore++
+    }
+    if (winner === "computer")
+    {
+        computerScore++
     }
 
     playerScore.textContent = 'Player Score: ' + humanScore
@@ -56,7 +73,7 @@ function playRound(humanChoice, computerChoice)
     }
     else
     {
-        lastRoundText.textContent = 'Last round you chose ' + humanChoice + ' and the computer chose ' + computerChoice + ". " + winner + 'wins!'
+        lastRoundText.textContent = 'Last round you chose ' + humanChoice + ' and the computer chose ' + computerChoice + ". " + winner + ' wins!'
     }
     
 }
@@ -75,14 +92,14 @@ scissorsImg.addEventListener("click", chooseScissors)
 //functions triggered when image is clicked
 function chooseRock()
 {
-    playRound(1, getComputerChoice()) //sets of "playRound" function in game logic section
+    playRound("rock", getComputerChoice()) //sets of "playRound" function in game logic section
 }
 function choosePaper()
 {
-    playRound(2, getComputerChoice())
+    playRound("paper", getComputerChoice())
 }
 function chooseScissors()
 {
-    playRound(3, getComputerChoice())
+    playRound("scissors", getComputerChoice())
 }
 
