@@ -5,6 +5,7 @@ let computerScore = 0;
 
 playerScore = document.getElementById("player-score")
 opponentScore = document.getElementById("computer-score")
+lastRoundText = document.getElementById("last-round-text")
 
 //creates a random num 1-3, returns number
 let rand = 0
@@ -16,6 +17,7 @@ function getComputerChoice() {
 
 function playRound(humanChoice, computerChoice) 
 {
+    let winner = ''
     // if (humanChoice === computerChoice)
     // {
         
@@ -47,6 +49,16 @@ function playRound(humanChoice, computerChoice)
 
     playerScore.textContent = 'Player Score: ' + humanScore
     opponentScore.textContent = 'Computer Score: ' + computerScore
+
+    if (humanChoice === computerChoice)
+    {
+        lastRoundText.textContent = 'Its a tie! You both chose ' + humanChoice
+    }
+    else
+    {
+        lastRoundText.textContent = 'Last round you chose ' + humanChoice + ' and the computer chose ' + computerChoice + ". " + winner + 'wins!'
+    }
+    
 }
 
 // UI logic
@@ -64,15 +76,13 @@ scissorsImg.addEventListener("click", chooseScissors)
 function chooseRock()
 {
     playRound(1, getComputerChoice()) //sets of "playRound" function in game logic section
-    alert("Rock") //for debugging
 }
 function choosePaper()
 {
     playRound(2, getComputerChoice())
-    alert("Paper")
 }
 function chooseScissors()
 {
     playRound(3, getComputerChoice())
-    alert("Scissors")
 }
+
