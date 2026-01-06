@@ -36,10 +36,6 @@ function playRound(humanChoice, computerChoice)
     {
         humanScore++;
     }
-    if (humanChoice === 2 && computerChoice === 1)
-    {
-        humanScore++;
-    }
     if (humanChoice === 3 && computerChoice === 1)
     {
         computerScore++;
