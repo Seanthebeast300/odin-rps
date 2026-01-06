@@ -1,95 +1,104 @@
+//game logic
+//ver declerations
 let humanScore = 0;
 let computerScore = 0;
 
+playerScore = document.getElementById("player-score")
+opponentScore = document.getElementById("computer-score")
+lastRoundText = document.getElementById("last-round-text")
 
 //creates a random num 1-3, returns number
 let rand = 0
 function getComputerChoice() {
     rand = Math.round(((Math.random() * 2) + 1))
-    
-    // if (rand === 1) {
-    //     output = "rock"
-    // }
-    // if (rand === 2) {
-    //     output = "paper"
-    // }
-    // if (rand === 3) {
-    //     output = "scissors"
-    // }
 
-    return rand
-}
-
-//prompts the user to enter a number 1-3, returns number
-
-function getHumanChoice(){
-    let input = 0
-    while(input <= 0 || input >= 4 || isNaN(input) == true)
+    if (rand == 1)
     {
-        input = parseInt(prompt("Please enter either 1, 2, or 3. \n 1 = rock, 2 = paper, 3 = scissors \nHuman score: " + humanScore + "\nComputer score: " + computerScore))
+        return "rock"
     }
-
-
-    // if (input === 1) {
-    //     output = "rock"
-    // }
-    // if (input === 2) {
-    //     output = "paper"
-    // }
-    // if (input === 3) {
-    //     output = "scissors"
-    // }
-    
-    return input
-    
+    if (rand == 2)
+    {
+        return "paper"
+    }
+    if (rand == 3)
+    {
+        return "scissors"
+    }
 }
 
 function playRound(humanChoice, computerChoice) 
 {
+    let winner = ''
+
+    if (humanChoice === "rock" && computerChoice === "paper")
+    {
+        winner = "computer"
+    }
+    if (humanChoice === "rock" && computerChoice === "scissors")
+    {
+        winner = "player"
+    }
+    if (humanChoice === "paper" && computerChoice === "scissors")
+    {
+        winner = "computer"
+    }
+    if (humanChoice === "paper" && computerChoice === "rock")
+    {
+        winner = "player"
+    }
+    if (humanChoice === "scissors" && computerChoice === "rock")
+    {
+        winner = "computer"
+    }
+    if (humanChoice === "scissors" && computerChoice === "paper")
+    {
+        winner = "player"
+    }
+
+    if (winner === "player")
+    {
+        humanScore++
+    }
+    if (winner === "computer")
+    {
+        computerScore++
+    }
+
+    playerScore.textContent = 'Player Score: ' + humanScore
+    opponentScore.textContent = 'Computer Score: ' + computerScore
+
     if (humanChoice === computerChoice)
     {
-        return "You picked the same item, it's a tie"
+        lastRoundText.textContent = 'Its a tie! You both chose ' + humanChoice
     }
-    if (humanChoice === 1 && computerChoice === 2)
+    else
     {
-        computerScore++;
-        return "Paper beats rock, computer wins"
+        lastRoundText.textContent = 'Last round you chose ' + humanChoice + ' and the computer chose ' + computerChoice + ". " + winner + ' wins!'
     }
-    if (humanChoice === 1 && computerChoice === 3)
-    {
-        humanScore++;
-        return "Rocks beats scissors, human wins"
-    }
-    if (humanChoice === 2 && computerChoice === 3)
-    {
-        computerScore++;
-        return "Scissors beats paper, computer wins"
-    }
-    if (humanChoice === 2 && computerChoice === 1)
-    {
-        humanScore++;
-        return "Paper beats rock, human wins"
-    }
-    if (humanChoice === 2 && computerChoice === 1)
-    {
-        humanScore++;
-        return "Paper beats rock, human wins"
-    }
-    if (humanChoice === 3 && computerChoice === 1)
-    {
-        computerScore++;
-        return "Rock beats scissors, computer wins"
-    }
-    if (humanChoice === 3 && computerChoice === 2)
-    {
-        humanScore++;
-        return "Scissors beats paper, human wins"
-    }
+    
 }
 
-for (let i = 0; i < 5; i++)
+// UI logic
+// element creation with selectors
+rockImg = document.getElementById("rock")
+paperImg = document.getElementById("paper")
+scissorsImg = document.getElementById("scissors")
+
+//event listeners
+rockImg.addEventListener("click", chooseRock)
+paperImg.addEventListener("click", choosePaper)
+scissorsImg.addEventListener("click", chooseScissors)
+
+//functions triggered when image is clicked
+function chooseRock()
 {
-    console.log(playRound(getHumanChoice(), getComputerChoice()));
-    console.log("Human score: " + humanScore);
-    console.log("Computer score: " + computerScore);
+    playRound("rock", getComputerChoice()) //sets of "playRound" function in game logic section
+}
+function choosePaper()
+{
+    playRound("paper", getComputerChoice())
+}
+function chooseScissors()
+{
+    playRound("scissors", getComputerChoice())
 }
